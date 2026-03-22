@@ -1,60 +1,115 @@
-import './style.css'
-import typescriptLogo from './assets/typescript.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import { setupCounter } from './counter.ts'
+import './style.css';
+
+interface potentialThreatObject {
+  id: string;
+  speed_ms: number;
+  altitude_m: number;
+  heading_angle: number;
+  latitude: number;
+  longitude: number;
+  report_time: number; // shouldn't this be a Date/datetime?
+}
+const potentialThreats: potentialThreatObject[] = [
+  {
+    id: '11111',
+    speed_ms: 14,
+    altitude_m: 199,
+    heading_angle: 45,
+    latitude: 0,
+    longitude: 0,
+    report_time: 0,
+  },
+  {
+    id: '22222',
+    speed_ms: 20,
+    altitude_m: 200,
+    heading_angle: 90,
+    latitude: 0,
+    longitude: 0,
+    report_time: 0,
+  },
+  {
+    id: '22222',
+    speed_ms: 155,
+    altitude_m: 220,
+    heading_angle: 45,
+    latitude: 0,
+    longitude: 0,
+    report_time: 0,
+  },
+];
+
+interface militaryBase {
+  id: string;
+  name: string;
+  latitude: number;
+  longitude: number;
+  radar_range: number;
+}
+
+const airDefenseBases: militaryBase[] = [
+  // add more bases, as the coordinates become clear
+  {
+    id: '12345',
+    name: 'Riga Base',
+    latitude: 56.97475845607155,
+    longitude: 24.1670070219384,
+    radar_range: 100,
+  },
+];
+
+interface defenseSolution {
+  name: string;
+  speed_ms: number;
+  range_of_operations_m: number;
+  max_altitude: number;
+  price_eur: number;
+}
+
+const defenseSolutions: defenseSolution[] = [
+  {
+    name: 'Interceptor drone',
+    speed_ms: 80,
+    range_of_operations_m: 30000,
+    max_altitude: 2000,
+    price_eur: 10000,
+  },
+  {
+    name: 'Fighter jet',
+    speed_ms: 700,
+    range_of_operations_m: 350000,
+    max_altitude: 15000,
+    price_eur: 1000,
+  },
+  {
+    name: 'Rocket',
+    speed_ms: 1500,
+    range_of_operations_m: 100000,
+    max_altitude: 300000,
+    price_eur: 300000,
+  },
+  {
+    name: '50Cal',
+    speed_ms: 900,
+    range_of_operations_m: 2000,
+    max_altitude: 2000,
+    price_eur: 1, // per shot
+  },
+];
+
+const threatResponse = () => {
+  /*
+  1. Takes in an object
+  2. Goes through it
+  3. Checks speed and altitude
+  4. Checks location
+  5. Responds with: threat level and solution
+    5.1. If it's a threat, check speed and altitude
+    5.2. Choose solution based on speed and altitude
+    5.3. Print threat level. If it's a threat, print the solution as well
+  */
+};
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-<section id="center">
-  <div class="hero">
-    <img src="${heroImg}" class="base" width="170" height="179">
-    <img src="${typescriptLogo}" class="framework" alt="TypeScript logo"/>
-    <img src=${viteLogo} class="vite" alt="Vite logo" />
-  </div>
-  <div>
-    <h1>Get started</h1>
-    <p>Edit <code>src/main.ts</code> and save to test <code>HMR</code></p>
-  </div>
-  <button id="counter" type="button" class="counter"></button>
-</section>
-
-<div class="ticks"></div>
-
-<section id="next-steps">
-  <div id="docs">
-    <svg class="icon" role="presentation" aria-hidden="true"><use href="/icons.svg#documentation-icon"></use></svg>
-    <h2>Documentation</h2>
-    <p>Your questions, answered</p>
-    <ul>
-      <li>
-        <a href="https://vite.dev/" target="_blank">
-          <img class="logo" src=${viteLogo} alt="" />
-          Explore Vite
-        </a>
-      </li>
-      <li>
-        <a href="https://www.typescriptlang.org" target="_blank">
-          <img class="button-icon" src="${typescriptLogo}" alt="">
-          Learn more
-        </a>
-      </li>
-    </ul>
-  </div>
-  <div id="social">
-    <svg class="icon" role="presentation" aria-hidden="true"><use href="/icons.svg#social-icon"></use></svg>
-    <h2>Connect with us</h2>
-    <p>Join the Vite community</p>
-    <ul>
-      <li><a href="https://github.com/vitejs/vite" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#github-icon"></use></svg>GitHub</a></li>
-      <li><a href="https://chat.vite.dev/" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#discord-icon"></use></svg>Discord</a></li>
-      <li><a href="https://x.com/vite_js" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#x-icon"></use></svg>X.com</a></li>
-      <li><a href="https://bsky.app/profile/vite.dev" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#bluesky-icon"></use></svg>Bluesky</a></li>
-    </ul>
-  </div>
-</section>
-
-<div class="ticks"></div>
-<section id="spacer"></section>
-`
-
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+<p>My threat detection app</p>
+`;
