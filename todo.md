@@ -1,21 +1,55 @@
-1. Define the data model - create an interface for the object and the object itself (hard-coded values). Start with 1 object.
+## Tasks
 
-- For now, don't add latitude, longitude and report time
+1. Define the problem and how it should work on readme
+2. Modify the defense solution function, so that it offers 50Cal too.
+3. Factor in latitude, longitude and angle the threat is coming from (how?)
+4. Factor in the report time
+5. Use Canvas html with image to put dots on "the map"
 
-2. Create an object for the first military base - Riga
-3. Create an array of "solutions" with their properties - fighter jet, rocket, etc.
-4. Create a function that processes all the necessary data an outputs the threat level and "solution"
+## Defense solution info:
 
-- if > 15m/s - not a threat,
-- if 15 - 150 - caution,
-- if > 150 - threat
-- else - potential threat
-- Print - type of interceptor
+# Interceptor drone
+
+- Speed - 80 m/s,
+- range of operations - 30 000 m,
+- max altitude - 2000 m,
+- price: 10 000 EUR
+
+## Fighter jet
+
+- Speed - 700 m/s,
+- range of operations - 3 500 000 m,
+- max altitude - 15 000 m,
+- price per minute 1 000 EUR
+
+## Rocket,
+
+- Speed 1500 m/s,
+- range of operations 10 000 000 m,
+- max altitude 300 000 m,
+- price 300 000 EUR
+
+## 50Cal
+
+- Speed - 900 m/s,
+- range of operations - 2 000 m,
+- max altitude - 2000 m,
+- price 1 eur per shot
 
 5. Set up the "database"
 
 - find an sql package for npm
-- script for importing data to db
-- export data in a file for github repo
+- something in between
+- add Docker
 
-6. Use Canvas html with image to put dots on for the map
+## Relevant info
+
+2. "Map component" means drawing a map on UI with data about threat locations and military bases (geographic information system data)
+3. „heading_deg” - angle of the potential threat object
+4. For database
+
+- Locations -> locations of the military base(-s)
+- Interceptors - air defense solutions (Drone, Fighter Jet, etc.)
+- Database and everything else is in Docker (how?)
+
+6. Riga base has all types of interceptors
