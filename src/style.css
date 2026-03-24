@@ -3,3 +3,30 @@ body {
   font-size: 1rem;
   padding: 1rem;
 }
+
+h1 {
+  margin: 0;
+  padding: 0;
+  /* text-align: center; - for later when the map is implemented */
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#start-radar {
+  width: fit-content;
+  padding: 0.4rem 0.5rem 0.4rem 0.5rem;
+  text-align: center;
+  border: 2px transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+}
+
+#start-radar:hover {
+  background-color: #5d5d5a;
+}
