@@ -1,5 +1,5 @@
 import './style.css';
-import { respondToThreats } from './data/threatResponse';
+import { respondToThreats } from './logic/threatResponse';
 import { radarSystemData } from './data/radarData';
 
 const main = () => {

@@ -1,5 +1,6 @@
-import type { radarDataObject } from './radarData';
-import { waitOneSecond } from './waitOneSecond';
+import type { radarDataObject } from '../data/radarData';
+import { waitOneSecond } from './utils/waitOneSecond';
+import { threatInterceptors } from '../data/threatInterceptors';
 
 const provideDefenseSolution = (potentialThreat: radarDataObject) => {
   if (
@@ -7,24 +8,26 @@ const provideDefenseSolution = (potentialThreat: radarDataObject) => {
     potentialThreat.altitude_m <= 2000
   ) {
     document.getElementById('threat-solution')!.innerHTML =
-      'Send the interceptor drone';
+      `Send the ${threatInterceptors[0].name}`;
   } else if (
     (potentialThreat.speed_ms >= 700 && potentialThreat.speed_ms <= 1500) ||
     (potentialThreat.altitude_m > 2000 && potentialThreat.altitude_m <= 15000)
   ) {
     document.getElementById('threat-solution')!.innerHTML =
-      'Send the fighter jet';
+      `Send the ${threatInterceptors[1].name}`;
   } else if (
     (potentialThreat.speed_ms >= 1500 && potentialThreat.altitude_m > 15000) ||
     potentialThreat.altitude_m <= 300000
   ) {
-    document.getElementById('threat-solution')!.innerHTML = 'Send the rocket';
+    document.getElementById('threat-solution')!.innerHTML =
+      `Send the ${threatInterceptors[2].name}`;
   } else if (
     potentialThreat.speed_ms <= 900 &&
     potentialThreat.speed_ms >= 1500 &&
     potentialThreat.altitude_m <= 2000
   ) {
-    document.getElementById('threat-solution')!.innerHTML = 'Use the 50Cal';
+    document.getElementById('threat-solution')!.innerHTML =
+      `Send the ${threatInterceptors[3].name}`;
   }
 };
 
