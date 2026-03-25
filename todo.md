@@ -1,10 +1,12 @@
 ## Tasks
 
 1. Define the problem and how it should work on readme
-2. Modify the defense solution function, so that it offers 50Cal too.
-3. Factor in latitude, longitude and angle the threat is coming from (how?)
-4. Factor in the report time
-5. Use Canvas html with image to put dots on "the map"
+2. Modify the defense solution function, so that it offers 50Cal too (bug).
+3. Integrate the radar data generation function into the threatResponse function
+
+-
+
+4. Use Canvas html with image to put dots on "the map"
 
 ## Defense solution info:
 
@@ -44,12 +46,11 @@
 
 ## Relevant info
 
-2. "Map component" means drawing a map on UI with data about threat locations and military bases (geographic information system data)
-3. „heading_deg” - angle of the potential threat object
-4. For database
+1. "Map component" means drawing a map on UI with data about threat locations and military bases (geographic information system data)
+2. For database
 
 - Locations -> locations of the military base(-s)
 - Interceptors - air defense solutions (Drone, Fighter Jet, etc.)
-- Database and everything else is in Docker (how?)
+- Database and everything else is run in Docker
 
 6. Riga base has all types of interceptors
