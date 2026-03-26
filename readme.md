@@ -2,7 +2,7 @@
 
 Hello, dear reviewer/-s!
 
-I have tried my best to do as much as I can up until this moment, but, unfortunately, this project is still a work in progress. At the time of writing, I have partially completed the main logic for the threat classification, but things like unit tests, SQL database and Docker are yet to be implemented (_"these are not the features you are looking for", said Qui-Gon_).
+I have tried my best to do as much as I can up until this moment, but, unfortunately, this project is still a work in progress. At the time of writing, I have partially completed the main logic for the threat classification, but things like unit tests, SQL database and Docker are yet to be implemented. There is no map either - just a lonely button and a title (_"these are not the features you are looking for", said Qui-Gon_).
 
 I plan to keep working on this project up until the evening of today. Thank you for your patience and have a nice day!
 

@@ -1,12 +1,8 @@
 ## Tasks
 
-1. Define the problem and how it should work on readme
-2. Modify the defense solution function, so that it offers 50Cal too (bug).
-3. Integrate the radar data generation function into the threatResponse function
-
--
-
-4. Use Canvas html with image to put dots on "the map"
+1. Modify the defense solution function, so that it offers 50Cal too (bug).
+2. Integrate the radar data generation function into the threatResponse function
+3. Use Canvas html with image to put dots on "the map"
 
 ## Defense solution info:
 
@@ -53,4 +49,4 @@
 - Interceptors - air defense solutions (Drone, Fighter Jet, etc.)
 - Database and everything else is run in Docker
 
-6. Riga base has all types of interceptors
+3. Riga base has all types of interceptors
