@@ -16,6 +16,7 @@ const clearTheUI = () => {
 const main = () => {
   const startButton = document.getElementById('start-radar');
   startButton?.addEventListener('click', () => {
+    continueFiring = true;
     respondToThreats(continueFiringObjects);
   });
 

@@ -37,61 +37,67 @@ export const respondToThreats = async (stopperFunction: () => boolean) => {
 
   while (stopperFunction()) {
     await waitOneSecond();
-    let potentialThreat: radarDataObject = generateRadarData();
 
-    /*
-    The idea about the padStart() function was found here - 
-    https://www.javaspring.net/blog/javascript-date-ensure-getminutes-gethours-getseconds-puts-0-in-front-if-necessary/
-    */
-    let reportTimeHours = potentialThreat.report_time
-      .getHours()
-      .toString()
-      .padStart(2, '0');
-    let reportTimeMinutes = potentialThreat.report_time
-      .getMinutes()
-      .toString()
-      .padStart(2, '0');
-    let reportTimeSeconds = potentialThreat.report_time
-      .getSeconds()
-      .toString()
-      .padStart(2, '0');
+    if (stopperFunction() === true) {
+      let potentialThreat: radarDataObject = generateRadarData();
 
-    let reportTime = `${reportTimeHours}:${reportTimeMinutes}:${reportTimeSeconds}`;
+      /*
+      The idea about the padStart() function was found here - 
+      https://www.javaspring.net/blog/javascript-date-ensure-getminutes-gethours-getseconds-puts-0-in-front-if-necessary/
+      */
+      let reportTimeHours = potentialThreat.report_time
+        .getHours()
+        .toString()
+        .padStart(2, '0');
+      let reportTimeMinutes = potentialThreat.report_time
+        .getMinutes()
+        .toString()
+        .padStart(2, '0');
+      let reportTimeSeconds = potentialThreat.report_time
+        .getSeconds()
+        .toString()
+        .padStart(2, '0');
 
-    if (potentialThreat.speed_ms < 15 || potentialThreat.altitude_m < 200) {
-      document.getElementById('threat-level')!.innerHTML =
-        `Object ${objectCounter} is not a threat. No need to respond`;
+      let reportTime = `${reportTimeHours}:${reportTimeMinutes}:${reportTimeSeconds}`;
 
-      document.getElementById('report-time')!.innerHTML =
-        `Report time: ${reportTime}`;
+      if (potentialThreat.speed_ms < 15 || potentialThreat.altitude_m < 200) {
+        document.getElementById('threat-level')!.innerHTML =
+          `Object ${objectCounter} is not a threat. No need to respond`;
 
-      objectCounter++;
-    } else if (
-      potentialThreat.speed_ms > 15 &&
-      potentialThreat.speed_ms < 150
-    ) {
-      document.getElementById('threat-level')!.innerHTML =
-        `Object ${objectCounter} - caution.`;
+        document.getElementById('report-time')!.innerHTML =
+          `Report time: ${reportTime}`;
 
-      document.getElementById('report-time')!.innerHTML =
-        `Report time: ${reportTime}`;
+        objectCounter++;
+      } else if (
+        potentialThreat.speed_ms > 15 &&
+        potentialThreat.speed_ms < 150
+      ) {
+        document.getElementById('threat-level')!.innerHTML =
+          `Object ${objectCounter} - caution.`;
 
-      objectCounter++;
-    } else if (potentialThreat.speed_ms > 150) {
-      document.getElementById('threat-level')!.innerHTML =
-        `Object ${objectCounter} - threat.`;
+        document.getElementById('report-time')!.innerHTML =
+          `Report time: ${reportTime}`;
 
-      provideDefenseSolution(potentialThreat);
+        objectCounter++;
+      } else if (potentialThreat.speed_ms > 150) {
+        document.getElementById('threat-level')!.innerHTML =
+          `Object ${objectCounter} - threat`;
 
-      objectCounter++;
-    } else {
-      document.getElementById('threat-level')!.innerHTML =
-        `Object ${objectCounter} - potential threat.`;
+        document.getElementById('report-time')!.innerHTML =
+          `Report time: ${reportTime}`;
 
-      document.getElementById('report-time')!.innerHTML =
-        `Report time: ${reportTime}`;
+        provideDefenseSolution(potentialThreat);
 
-      objectCounter++;
+        objectCounter++;
+      } else {
+        document.getElementById('threat-level')!.innerHTML =
+          `Object ${objectCounter} - potential threat.`;
+
+        document.getElementById('report-time')!.innerHTML =
+          `Report time: ${reportTime}`;
+
+        objectCounter++;
+      }
     }
   }
 };
