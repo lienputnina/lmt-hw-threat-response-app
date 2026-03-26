@@ -21,6 +21,22 @@ h1 {
   gap: 0.5rem;
 }
 
+#generate-threats {
+  width: fit-content;
+  padding: 0.4rem 0.5rem 0.4rem 0.5rem;
+  text-align: center;
+  border: 2px transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #474747;
+  color: white;
+}
+
+#generate-threats:hover {
+  background-color: #868585;
+  color: white;
+}
+
 #start-radar {
   width: fit-content;
   padding: 0.4rem 0.5rem 0.4rem 0.5rem;
@@ -43,7 +59,7 @@ h1 {
   border: 1px transparent;
   border-radius: 4px;
   cursor: pointer;
-  background-color: rgb(222, 216, 216);
+  background-color: #ded8d8;
   color: black;
 }
 

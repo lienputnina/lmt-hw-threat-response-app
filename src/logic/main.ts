@@ -14,6 +14,13 @@ const clearTheUI = () => {
 };
 
 const main = () => {
+  const generateThreats = document.getElementById('generate-threats');
+  generateThreats?.addEventListener('click', () => {
+    continueFiring = true;
+    // for later when the threat generation and processing logic is separated
+    console.log('Generating threats');
+  });
+
   const startButton = document.getElementById('start-radar');
   startButton?.addEventListener('click', () => {
     continueFiring = true;
@@ -25,6 +32,7 @@ const main = () => {
     continueFiring = false;
     clearTheUI();
   });
+  // Will stop threat processing later
 };
 
 main();
