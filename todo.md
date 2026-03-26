@@ -1,7 +1,14 @@
 ## Tasks
 
 1. Modify the defense solution function, so that it offers 50Cal too (bug).
-2. Integrate the radar data generation function into the threatResponse function
+2. Convert everything into OOP
+3. Make the objects move
+
+- Create an array to store the objects
+- Put the generated objects in the array
+- Make the objects change location
+- Clear the array after "stop" - array.pop
+
 3. Use Canvas html with image to put dots on "the map"
 
 ## Defense solution info:
