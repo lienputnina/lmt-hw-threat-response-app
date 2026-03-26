@@ -1,11 +1,8 @@
 ## Tasks
 
 1. Modify the defense solution function, so that it offers 50Cal too (bug).
-2. Convert everything into OOP
-3. Make the objects move
+2. Make the objects move and "get into the radar range"
 
-- Create an array to store the objects
-- Put the generated objects in the array
 - Make the objects change location
 - Clear the array after "stop" - array.pop
 

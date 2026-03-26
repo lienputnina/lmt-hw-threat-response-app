@@ -1,9 +1,10 @@
-import type { radarDataObject } from './utils/generateRadarData';
 import { waitOneSecond } from './utils/waitOneSecond';
 import { threatInterceptors } from '../data/threatInterceptors';
-import { generateRadarData } from './utils/generateRadarData';
+import { generateThreats } from './utils/generateThreats';
+import type { potentialThreat } from './potentialThreatClass';
+import { airDefenseBase } from '../data/airDefenseBase';
 
-const provideDefenseSolution = (potentialThreat: radarDataObject) => {
+const provideDefenseSolution = (potentialThreat: potentialThreat) => {
   if (
     (potentialThreat.speed_ms >= 80 && potentialThreat.speed_ms < 700) ||
     potentialThreat.altitude_m <= 2000
@@ -35,12 +36,28 @@ const provideDefenseSolution = (potentialThreat: radarDataObject) => {
 export const respondToThreats = async (stopperFunction: () => boolean) => {
   let objectCounter = 1;
 
+  // Will split this into another function later
+  const potentialThreats: potentialThreat[] = [];
+
+  let potentialThreat = generateThreats();
+  potentialThreats.push(potentialThreat);
+
+  let isInRangeOfRigaBase: boolean = false;
+
   while (stopperFunction()) {
     await waitOneSecond();
 
-    if (stopperFunction() === true) {
-      let potentialThreat: radarDataObject = generateRadarData();
+    potentialThreats.forEach((threat) => threat.movePotentialThreat());
 
+    // doesn't work yet, will refactor later
+    if (
+      potentialThreat.latitude === airDefenseBase.latitude &&
+      potentialThreat.longitude === airDefenseBase.longitude
+    ) {
+      isInRangeOfRigaBase = true;
+    }
+
+    if (stopperFunction() === true) {
       /*
       The idea about the padStart() function was found here - 
       https://www.javaspring.net/blog/javascript-date-ensure-getminutes-gethours-getseconds-puts-0-in-front-if-necessary/
@@ -99,5 +116,6 @@ export const respondToThreats = async (stopperFunction: () => boolean) => {
         objectCounter++;
       }
     }
+    // potentialThreats.pop();
   }
 };

@@ -1,29 +1,22 @@
 import { generateRandomNumber } from './generateRandomNumber';
 import { generateLatitude } from './generateLatitude';
 import { generateLongitude } from './generateLongitude';
+import { potentialThreat } from '../potentialThreatClass';
 
-export interface radarDataObject {
-  speed_ms: number;
-  altitude_m: number;
-  heading_deg: number;
-  latitude: number;
-  longitude: number;
-  report_time: Date;
-}
-
-export const generateRadarData = (): radarDataObject => {
+export const generateThreats = (): potentialThreat => {
   let objectSpeed: number = generateRandomNumber(14, 1500);
   let objectAltitude: number = generateRandomNumber(100, 16000);
   let objectLatitude: number = generateLatitude();
   let objectLongitude: number = generateLongitude();
   let objectBearingInDegrees: number = generateRandomNumber(0, 360);
+  let report_time = new Date();
 
-  return {
-    speed_ms: objectSpeed,
-    altitude_m: objectAltitude,
-    latitude: objectLatitude,
-    longitude: objectLongitude,
-    heading_deg: objectBearingInDegrees,
-    report_time: new Date(),
-  };
+  return new potentialThreat(
+    objectSpeed,
+    objectAltitude,
+    objectLatitude,
+    objectLongitude,
+    objectBearingInDegrees,
+    report_time,
+  );
 };
