@@ -1,6 +1,7 @@
-import type { radarDataObject } from '../data/radarData';
+import type { radarDataObject } from './utils/generateRadarData';
 import { waitOneSecond } from './utils/waitOneSecond';
 import { threatInterceptors } from '../data/threatInterceptors';
+import { generateRadarData } from './utils/generateRadarData';
 
 const provideDefenseSolution = (potentialThreat: radarDataObject) => {
   if (
@@ -31,18 +32,17 @@ const provideDefenseSolution = (potentialThreat: radarDataObject) => {
   }
 };
 
-export const respondToThreats = async (radarSystemData: radarDataObject[]) => {
-  let potentialThreat: radarDataObject;
-  let threatCounter = 1;
+export const respondToThreats = async (stopperFunction: () => boolean) => {
+  let objectCounter = 1;
 
-  for (let i = 0; i < radarSystemData.length; i++) {
+  while (stopperFunction()) {
     await waitOneSecond();
-    potentialThreat = radarSystemData[i];
+    let potentialThreat: radarDataObject = generateRadarData();
 
     /*
     The idea about the padStart() function was found here - 
     https://www.javaspring.net/blog/javascript-date-ensure-getminutes-gethours-getseconds-puts-0-in-front-if-necessary/
-     */
+    */
     let reportTimeHours = potentialThreat.report_time
       .getHours()
       .toString()
@@ -55,42 +55,43 @@ export const respondToThreats = async (radarSystemData: radarDataObject[]) => {
       .getSeconds()
       .toString()
       .padStart(2, '0');
+
     let reportTime = `${reportTimeHours}:${reportTimeMinutes}:${reportTimeSeconds}`;
 
     if (potentialThreat.speed_ms < 15 || potentialThreat.altitude_m < 200) {
       document.getElementById('threat-level')!.innerHTML =
-        `Object ${threatCounter} is not a threat. No need to respond`;
+        `Object ${objectCounter} is not a threat. No need to respond`;
 
       document.getElementById('report-time')!.innerHTML =
         `Report time: ${reportTime}`;
 
-      threatCounter++;
+      objectCounter++;
     } else if (
       potentialThreat.speed_ms > 15 &&
       potentialThreat.speed_ms < 150
     ) {
       document.getElementById('threat-level')!.innerHTML =
-        `Object ${threatCounter} - caution.`;
+        `Object ${objectCounter} - caution.`;
 
       document.getElementById('report-time')!.innerHTML =
         `Report time: ${reportTime}`;
 
-      threatCounter++;
+      objectCounter++;
     } else if (potentialThreat.speed_ms > 150) {
       document.getElementById('threat-level')!.innerHTML =
-        `Object ${threatCounter} - threat.`;
+        `Object ${objectCounter} - threat.`;
 
       provideDefenseSolution(potentialThreat);
 
-      threatCounter++;
+      objectCounter++;
     } else {
       document.getElementById('threat-level')!.innerHTML =
-        `Object ${threatCounter} - potential threat.`;
+        `Object ${objectCounter} - potential threat.`;
 
       document.getElementById('report-time')!.innerHTML =
         `Report time: ${reportTime}`;
 
-      threatCounter++;
+      objectCounter++;
     }
   }
 };

@@ -16,6 +16,11 @@ h1 {
   gap: 1rem;
 }
 
+.controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
 #start-radar {
   width: fit-content;
   padding: 0.4rem 0.5rem 0.4rem 0.5rem;
@@ -29,4 +34,19 @@ h1 {
 
 #start-radar:hover {
   background-color: #5d5d5a;
+}
+
+#stop-radar {
+  width: fit-content;
+  padding: 0.4rem 0.5rem 0.4rem 0.5rem;
+  text-align: center;
+  border: 1px transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: rgb(222, 216, 216);
+  color: black;
+}
+
+#stop-radar:hover {
+  background-color: #e4e1e1;
 }

@@ -8,13 +8,16 @@
   <body>
     <div id="app">
       <h1>Air-borne threat detector</h1>
-      <button id="start-radar">Start radar</button>
+      <div class="controls">
+        <button id="start-radar">Start radar</button>
+        <button id="stop-radar">Stop radar</button>
+      </div>
       <div class="threat-info">
         <p id="threat-level"></p>
         <p id="threat-solution"></p>
         <p id="report-time"></p>
       </div>
     </div>
-    <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="/src/logic/main.ts"></script>
   </body>
 </html>
